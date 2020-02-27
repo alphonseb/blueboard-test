@@ -1,0 +1,15 @@
+@import '../../style/colors.scss';
+
+.cta-button {
+    background-color: $light-red;
+    color: $white;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 16px 12px;
+    font-size: 1.4rem;
+    letter-spacing: calc(40em / 1000);
+    
+    &--shadow {
+        box-shadow: 0px 3px 3px 0px rgba($color: $shadow-color, $alpha: 0.25);
+    }
+}

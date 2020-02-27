@@ -1,0 +1,8 @@
+.text-block {
+    font-size: 1.6rem;
+    letter-spacing: calc(40em / 1000);
+    
+    &:not(:last-child) {
+        margin-bottom: 1em;
+    }
+}

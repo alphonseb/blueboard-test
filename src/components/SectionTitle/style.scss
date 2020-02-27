@@ -1,0 +1,21 @@
+@import '../../style/colors.scss';
+
+.section-title {
+    &__over {
+        display: block;
+        font-size: 1.6rem;
+        color: $light-red;
+        letter-spacing: calc(200em / 1000);
+        text-transform: uppercase;
+    }
+    
+    &__main {
+        font-size: 4rem;
+        letter-spacing: calc(40em / 1000);
+        line-height: 1.1em;
+    }
+
+    &__ellipsis {
+        color: $light-red;
+    }
+}
