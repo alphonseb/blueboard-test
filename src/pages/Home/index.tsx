@@ -1,21 +1,107 @@
-import React from 'react';
-import SectionTitle from '../../components/SectionTitle/index'
-import CtaButton from '../../components/CtaButton/index'
-import TextBlock from '../../components/TextBlock/index'
-import FormField from '../../components/FormField/index'
+import React, { RefObject } from 'react';
 
-function Home () {
+import './style.scss';
+import poster from '../../assets/background-header.jpg';
+import homeSecond from '../../assets/home-second.jpg';
+import macbook from '../../assets/macbook.png';
+
+import SectionTitle from '../../components/SectionTitle/index';
+import CtaButton from '../../components/CtaButton/index';
+import TextBlock from '../../components/TextBlock/index';
+import FormField from '../../components/FormField/index';
+import PageTitle from '../../components/PageTitle/index';
+import FlexContainer from '../../components/FlexContainer/index';
+import FeatureBlock from '../../components/FeatureBlock/index';
+
+import feature1Url from '../../assets/feature1.png';
+
+
+function Home() {
+    const videoRef: RefObject<HTMLVideoElement> = React.createRef();
+    const startVideo = ():void => {
+        videoRef.current?.play()
+    };
+
     return (
-        <main>
-            <h1>Home</h1>
-            <SectionTitle text={"My text"} />
-            <SectionTitle text={"My text with ellipsis"} hasEllipsis />
-            <SectionTitle text="My text with ellipsis" hasEllipsis overTitle="Over title" />
-            <CtaButton text="Try now" hasShadow />
-            <TextBlock text="lorem ipsumoreriljsqflgdjgkhsfgdih  hdslkgrjshed hrldk" />
-            <TextBlock text="lorem ipsumoreriljsqflgdjgkhsfgdih  hdslkgrjshed hrldk" />
-            <FormField name="first_name" label="First name" />
-            <FormField name="email" label="Email" type="email" error="Please fill this form" />
+        <main className="home">
+            <section className="home__first">
+                <video ref={ videoRef } src="https://storage.coverr.co/videos/Stunning%20Mountains?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTgyOTAxMzIxfQ.gHi8oo7_Fk6hFY2IZIVQqo7gU4anZ5w8RSzuN0RI1AQ" className="home__video" poster={ poster }></video>
+                <div className="home__first-content">
+                    <PageTitle text="You will need no other platform" />
+                    <button className="home__play-button" onClick={ startVideo }>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59 59" width="59" height="59">
+                            <defs>
+                                <style>
+                                    { `.cls-1 {
+                                        opacity: 0.6;
+                                    }
+                                    .cls-2 {
+                                        fill: #323969;
+                                    }
+                                    .cls-3 {
+                                        fill: #f4f5f7;
+                                    }` }
+                                </style>
+                            </defs>
+                            <g id="Play_Video_Icon" data-name="Play Video Icon" className="cls-1" transform="translate(-691 -406)">
+                                <circle id="Ellipse_2" data-name="Ellipse 2" className="cls-2" cx="29.5" cy="29.5" r="29.5" transform="translate(691 406)" />
+                                <path id="Polygon_1" data-name="Polygon 1" className="cls-3" d="M731,435.5,714,445V426Z" />
+                            </g>
+                        </svg>
+                    </button>
+                    <CtaButton text="Try it now" />
+                    <p className="home__disclaimer">* No need to add card details</p>
+                </div>
+            </section>
+            <section className="home__second">
+                <FlexContainer>
+                    <div className="home__second-content">
+                        <SectionTitle text="There is no other platform for you" hasEllipsis overTitle="New design" />
+                        <TextBlock text="Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper." />
+                        <TextBlock text="Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue." />
+                    </div>
+                    <div className="home__second-image">
+                        <img src={ homeSecond } alt=""/>
+                    </div>
+                </FlexContainer>
+            </section>
+            <section className="home__third">
+                <div className="home__third-title">
+                    <SectionTitle text="Some awesome features" overTitle="New Features" />
+                </div>
+                <FlexContainer justify="center">
+                    <FeatureBlock title="Some awesome features" imgUrl={ feature1Url } description="Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue." />
+                    <FeatureBlock title="Some awesome features" imgUrl={ feature1Url } description="Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue." />
+                    <FeatureBlock title="Some awesome features" imgUrl={ feature1Url } description="Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue." />
+                </FlexContainer>
+            </section>
+            <section className="home__fourth">
+                <FlexContainer reverse>
+                    <div className="home__fourth-content">
+                        <SectionTitle text="Responsive Design, just need your tap" hasEllipsis overTitle="new design" />
+                        <TextBlock text="Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Curabitur blandit tempus porttitor. Etiasem malesuada magn. Vestibulum felis euismod semper." />
+                    </div>
+                    <div className="home__fourth-image">
+                        <img src={ macbook } alt=""/>
+                    </div>
+                </FlexContainer>
+            </section>
+            <section className="home__contact">
+                <div className="home__contact-title">
+                    <SectionTitle text="Over 1000 designers are using" hasEllipsis overTitle="contact us" />
+                </div>
+                <form action="#" method="post">
+                    <FlexContainer justify="space-between" align="end">
+                        <FormField label="full name" name="name" />
+                        <FormField label="your email" name="email" type="email" />
+                        <FormField label="password" name="password" type="password" />
+                        <CtaButton text="try now" hasShadow />
+                    </FlexContainer>
+                </form>
+                <p className="home__contact-disclaimer">
+                    By signing up you agree to our <a href="/cgu">terms & Services</a>.
+                </p>
+            </section>
         </main>
     );
 };

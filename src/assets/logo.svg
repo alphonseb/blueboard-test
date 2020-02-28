@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 102.782 46.344">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff8a8a;
+      }
+
+      .cls-2 {
+        fill: #2c2f49;
+      }
+
+      .cls-2, .cls-5 {
+        font-size: 26.455px;
+        font-family: ArialMT, Arial;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-5 {
+        fill: #212126;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <path id="Polygon_1" data-name="Polygon 1" class="cls-1" d="M226.336,4717.687q11.825,7.031,23.729,13.921t0,13.783q-11.9,6.891-23.729,13.921t-11.746-6.891q.079-13.922,0-27.844T226.336,4717.687Z"/>
+    </clipPath>
+  </defs>
+  <g id="Logo" transform="translate(-153.234 -4715.328)">
+    <text id="Start_Ex" data-name="Start Ex" class="cls-2" transform="translate(153.234 4745.932)"><tspan x="0" y="0">Start</tspan><tspan class="cls-3" y="0" xml:space="preserve"> Ex</tspan></text>
+    <g id="Polygon_1-2" data-name="Polygon 1">
+      <path id="Polygon_1-3" data-name="Polygon 1" class="cls-1" d="M226.336,4717.687q11.825,7.031,23.729,13.921t0,13.783q-11.9,6.891-23.729,13.921t-11.746-6.891q.079-13.922,0-27.844T226.336,4717.687Z"/>
+      <g id="Clip" class="cls-4">
+        <text id="Start_Ex-2" data-name="Start Ex" class="cls-5" transform="translate(153.234 4745.932)"><tspan x="0" y="0">Start </tspan><tspan class="cls-3" y="0">Ex</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

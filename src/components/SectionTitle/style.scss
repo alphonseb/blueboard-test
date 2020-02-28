@@ -1,6 +1,10 @@
 @import '../../style/colors.scss';
 
 .section-title {
+    &:not(:last-child) {
+        margin-bottom: 40px;
+    }
+
     &__over {
         display: block;
         font-size: 1.6rem;

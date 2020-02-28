@@ -1,0 +1,201 @@
+@import '../../style/colors.scss';
+
+.home {
+    &__first {
+        width: 100%;
+        height: 100vh;
+        background-image: url(../../assets/background-header.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    &__video {
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    &__first-content {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    &__play-button {
+        display: block;
+        margin: 50px 0;
+    }
+    
+    &__disclaimer {
+        font-size: 1.4rem;
+        letter-spacing: calc(40em / 1000);
+        margin-top: 16px;
+    }
+    
+    &__second {
+        position: relative;
+        overflow: hidden;
+        
+        &::after {
+            content: '';
+            width: 70vw;
+            height: 70vw;
+            background-color: $light-red;
+            opacity: 0.7;
+            position: absolute;
+            bottom: 0;
+            left: 60vw;
+            transform: rotate(55deg);
+            transform-origin: bottom left;
+        }
+    }
+    
+    &__second-content {
+        width: 60%;
+        padding: 180px 200px 170px 150px;
+    }
+    
+    &__second-image {
+        width: 40%;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    &__third {
+        background-color: $light-grey;
+        padding: 135px 150px;
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: -5%;
+            left: 10%;
+            width: 290px;
+            height: 330px;
+            background-image: url(../../assets/penHolder.png);
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: -5%;
+            right: 10%;
+            width: 213px;
+            height: 279px;
+            background-image: url(../../assets/earphones.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+    
+    &__third-title {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+    
+    &__fourth {
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            width: 60vw;
+            height: 60vw;
+            background-color: $light-red;
+            opacity: 0.7;
+            bottom: 0;
+            right: 60vw;
+            transform-origin: bottom right;
+            transform: rotate(-45deg);
+            z-index: 5;
+        }
+    }
+    
+    &__fourth-content {
+        width: 50%;
+        padding: 140px 200px 160px 32px;
+    }
+    
+    &__fourth-image {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 10;
+    }
+    
+    &__contact {
+        background-color: $blue;
+        padding: 95px 150px;
+        
+        form .cta-button {
+            width: 260px;
+            position: relative;
+            
+            &::before {
+                content: '30 days free trial for all';
+                font-size: 1.6rem;
+                color: $white;
+                position: absolute;
+                bottom: calc(100% + 42px);
+                left: 10%;
+                text-transform: initial;
+            }
+            
+            &::after {
+                content: '';
+                width: 56px;
+                height: 41px;
+                background-image: url(../../assets/arrow.svg);
+                position: absolute;
+                left: 0;
+                bottom: calc(100% + 16px);
+            }
+        }
+    }
+    
+    &__contact-title {
+        text-align: center;
+        margin-bottom: 82px;
+        
+        .section-title__main, .section-title__ellipsis {
+            color: $white;
+        }
+        
+    }
+    
+    &__contact-disclaimer {
+        color: $light-grey;
+        opacity: 0.6;
+        text-align: center;
+        margin-top: 50px;
+        font-size: 1.6rem;
+        letter-spacing: calc(40em / 1000);
+        
+        a {
+            color: inherit;
+        }
+    }
+}
