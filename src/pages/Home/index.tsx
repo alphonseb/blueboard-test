@@ -1,4 +1,4 @@
-import React, { useState, RefObject, useEffect } from 'react';
+import React, { useState, RefObject, useEffect, ChangeEvent, FormEvent } from 'react';
 
 import './style.scss';
 import poster from '../../assets/background-header.jpg';
@@ -26,30 +26,99 @@ interface ApiResult {
     body: string
 };
 
+interface FormData {
+    name: string,
+    email: string,
+    password: string,
+    [key: string]: string;
+}
+
 function Home() {
+    /**
+     * Features
+     */
     const [features, setFeatures] = useState<Feature[]>([]);
     
     const getFeatures = async () => {
-        const result = await fetch('https://jsonplaceholder.typicode.com/posts');
-        const data: ApiResult[] = await result.json();
-        const features: Feature[] = await data.slice(0, 3).map(({ id, title, body }: ApiResult, index: number) => ({
-            id,
-            title,
-            body,
-            imgUrl: featureUrls[index]
-        }));
-        await setFeatures(features);
+        try {
+            const result = await fetch('https://jsonplaceholder.typicode.com/posts');
+            const data: ApiResult[] = await result.json();
+            const features: Feature[] = await data.slice(0, 3).map(({ id, title, body }: ApiResult, index: number) => ({
+                id,
+                title,
+                body,
+                imgUrl: featureUrls[index]
+            }));
+            await setFeatures(features);
+        } catch (error) {
+            throw new Error(error);
+        }
     }
     
     useEffect(() => {
         getFeatures();
     }, []);
     
+    /**
+     * Video
+     */
     const videoRef: RefObject<HTMLVideoElement> = React.createRef();
 
     const startVideo = ():void => {
         videoRef.current?.play()
     };
+    
+    /**
+     * Form
+     */
+    const [formResult, setFormResult] = useState<FormData>({ name: '', email: '', password: '' });
+    const [formErrors, setFormErrors] = useState<FormData>({ name: '', email: '', password: '' })
+
+    const handleFormChange = (e: ChangeEvent<HTMLInputElement>): void => {
+        const name = e.currentTarget.name
+        const value = e.currentTarget.value
+        setFormResult((state: FormData): FormData => ({ ...state, [name]: value}))
+    }
+    
+    const submitForm = async () => {
+        const request: Request = new Request(
+            'https://httpbin.org/post',
+            {
+                method: 'POST',
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                body: JSON.stringify(formResult)
+            }
+        );
+        try {
+            const result = await fetch(request);
+            const data = await result.json();
+            if (data.data) {
+                window.alert('You are subsribed !');
+                setFormResult({ name: '', email: '', password: '' });
+            } else {
+                window.alert('Error processing your demand !');
+            }
+        } catch (error) {
+            window.alert(`Error processing your demand : ${error}`);
+        }
+    }
+    
+    const handleFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
+        e.preventDefault();
+        Object.keys(formResult).forEach((key: string) => {
+            console.log(!formResult[key]);
+            if (!formResult[key]) {
+                setFormErrors((state: FormData): FormData => ({ ...state, [key]: `Please fill in your ${key}` }));
+            } else {
+                setFormErrors((state: FormData): FormData => ({ ...state, [key]: '' }));
+            }
+        })
+        if (Object.values(formResult).every(value => value)) {
+            submitForm();
+        }
+    }
 
     return (
         <main className="home">
@@ -119,11 +188,11 @@ function Home() {
                 <div className="home__contact-title">
                     <SectionTitle text="Over 1000 designers are using" hasEllipsis overTitle="contact us" />
                 </div>
-                <form action="#" method="post">
+                <form action="#" method="post" onSubmit={ handleFormSubmit }>
                     <FlexContainer justify="space-between" align="end">
-                        <FormField label="full name" name="name" />
-                        <FormField label="your email" name="email" type="email" />
-                        <FormField label="password" name="password" type="password" />
+                        <FormField required error={ formErrors.name } label="full name" name="name" value={ formResult.name } onChange={ handleFormChange }/>
+                        <FormField required error={ formErrors.email } label="your email" name="email" type="email" value={ formResult.email } onChange={ handleFormChange }/>
+                        <FormField required error={ formErrors.password } label="password" name="password" type="password" value={ formResult.password } onChange={ handleFormChange }/>
                         <CtaButton text="try now" hasShadow />
                     </FlexContainer>
                 </form>
