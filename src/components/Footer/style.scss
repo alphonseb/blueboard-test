@@ -1,11 +1,26 @@
 @import '../../style/colors.scss';
+@import '../../style/breakpoints.scss';
 
 .footer {
     padding: 85px 150px;
     
+    @media screen and (max-width: $medium) {
+        padding: 55px;
+    }
+    
+    @media screen and (max-width: $small) {
+        padding: 32px;
+    }
+    
     &__infos {
         width: 240px;
         margin-right: 60px;
+        
+        @media screen and (max-width: $small) {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 24px;
+        }
         
         p {
             font-size: 1.4rem;
@@ -21,6 +36,12 @@
     
     &__links {
         margin-right: 115px;
+        
+        @media screen and (max-width: $small) {
+            margin-right: 0;
+            margin-bottom: 24px;
+            width: 100%;
+        }
         
         ul {
             list-style: none;

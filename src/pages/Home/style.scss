@@ -1,7 +1,9 @@
 @import '../../style/colors.scss';
+@import '../../style/breakpoints.scss';
 
 .home {
     &__first {
+        padding: 32px;
         width: 100%;
         height: 100vh;
         background-image: url(../../assets/background-header.jpg);
@@ -60,16 +62,33 @@
             left: 60vw;
             transform: rotate(55deg);
             transform-origin: bottom left;
+            
+            @media screen and (max-width: $small) {
+                display: none;
+            }
         }
     }
     
     &__second-content {
         width: 60%;
         padding: 180px 200px 170px 150px;
+        
+        @media screen and (max-width: $medium) {
+            padding: 60px 100px;
+        }
+        
+        @media screen and (max-width: $small) {
+            width: 100%;
+            padding: 32px;
+        }
     }
     
     &__second-image {
         width: 40%;
+        
+        @media screen and (max-width: $small) {
+            width: 100%;
+        }
 
         img {
             object-fit: cover;
@@ -84,6 +103,14 @@
         position: relative;
         overflow: hidden;
         
+        @media screen and (max-width: $medium) {
+            padding: 50px;
+        }
+        
+        @media screen and (max-width: $small) {
+            padding: 32px;
+        }
+        
         &::before {
             content: '';
             position: absolute;
@@ -92,6 +119,10 @@
             width: 290px;
             height: 330px;
             background-image: url(../../assets/penHolder.png);
+            
+            @media screen and (max-width: $small) {
+                display: none;
+            }
         }
 
         &::after {
@@ -104,12 +135,18 @@
             background-image: url(../../assets/earphones.png);
             background-size: contain;
             background-repeat: no-repeat;
+            
+            @media screen and (max-width: $small) {
+                display: none;
+            }
         }
     }
     
     &__third-title {
         text-align: center;
         margin-bottom: 80px;
+        position: relative;
+        z-index: 10;
     }
     
     &__fourth {
@@ -129,12 +166,25 @@
             transform-origin: bottom right;
             transform: rotate(-45deg);
             z-index: 5;
+            
+            @media screen and (max-width: $small) {
+                display: none;
+            }
         }
     }
     
     &__fourth-content {
         width: 50%;
         padding: 140px 200px 160px 32px;
+        
+        @media screen and (max-width: $medium) {
+            padding: 100px;
+        }
+        
+        @media screen and (max-width: $small) {
+            padding: 32px;
+            width: 100%;
+        }
     }
     
     &__fourth-image {
@@ -144,15 +194,35 @@
         justify-content: center;
         position: relative;
         z-index: 10;
+        
+        @media screen and (max-width: $small) {
+            width: 100%;
+        }
     }
     
     &__contact {
         background-color: $blue;
         padding: 95px 150px;
         
+        @media screen and (max-width: $medium) {
+            padding: 60px;
+        }
+        
+        @media screen and (max-width: $small) {
+            padding: 32px;
+        }
+        
         form .cta-button {
             width: 260px;
             position: relative;
+            
+            @media screen and (max-width: $medium) {
+                margin-top: 100px;
+            }
+            
+            @media screen and (max-width: $small) {
+                margin-top: 100px;
+            }
             
             &::before {
                 content: '30 days free trial for all';
