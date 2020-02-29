@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import React, { useState, RefObject, useEffect } from 'react';
 
 import './style.scss';
 import poster from '../../assets/background-header.jpg';
@@ -11,13 +11,42 @@ import TextBlock from '../../components/TextBlock/index';
 import FormField from '../../components/FormField/index';
 import PageTitle from '../../components/PageTitle/index';
 import FlexContainer from '../../components/FlexContainer/index';
-import FeatureBlock from '../../components/FeatureBlock/index';
+import FeatureBlock, { Feature } from '../../components/FeatureBlock/index';
 
 import feature1Url from '../../assets/feature1.png';
+import feature2Url from '../../assets/feature2.png';
+import feature3Url from '../../assets/feature3.png';
 
+const featureUrls: string[] = [feature1Url, feature2Url, feature3Url];
+
+interface ApiResult {
+    userId: number,
+    id: number,
+    title: string,
+    body: string
+};
 
 function Home() {
+    const [features, setFeatures] = useState<Feature[]>([]);
+    
+    const getFeatures = async () => {
+        const result = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const data: ApiResult[] = await result.json();
+        const features: Feature[] = await data.slice(0, 3).map(({ id, title, body }: ApiResult, index: number) => ({
+            id,
+            title,
+            body,
+            imgUrl: featureUrls[index]
+        }));
+        await setFeatures(features);
+    }
+    
+    useEffect(() => {
+        getFeatures();
+    }, []);
+    
     const videoRef: RefObject<HTMLVideoElement> = React.createRef();
+
     const startVideo = ():void => {
         videoRef.current?.play()
     };
@@ -70,9 +99,9 @@ function Home() {
                     <SectionTitle text="Some awesome features" overTitle="New Features" />
                 </div>
                 <FlexContainer justify="center">
-                    <FeatureBlock title="Some awesome features" imgUrl={ feature1Url } description="Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue." />
-                    <FeatureBlock title="Some awesome features" imgUrl={ feature1Url } description="Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue." />
-                    <FeatureBlock title="Some awesome features" imgUrl={ feature1Url } description="Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Nulla vitae elit libero, a pharetra augue." />
+                    { features.map(feature => (
+                        <FeatureBlock key={ feature.id } feature={ feature } />
+                    ))}
                 </FlexContainer>
             </section>
             <section className="home__fourth">
